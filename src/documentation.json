@@ -1,0 +1,330 @@
+{
+    "bot_name": "Aurora",
+    "description": "Bot Discord multifonction avec modération, XP, annonces et plus encore",
+    "categories": {
+        "moderation": {
+            "name": "Modération",
+            "commands": [
+                {
+                    "name": "ban",
+                    "description": "Bannir un utilisateur du serveur",
+                    "usage": "/ban @utilisateur [raison]",
+                    "permissions": "BAN_MEMBERS"
+                },
+                {
+                    "name": "unban",
+                    "description": "Débannir un utilisateur",
+                    "usage": "/unban ID_utilisateur",
+                    "permissions": "BAN_MEMBERS"
+                },
+                {
+                    "name": "kick",
+                    "description": "Expulser un utilisateur du serveur",
+                    "usage": "/kick @utilisateur [raison]",
+                    "permissions": "KICK_MEMBERS"
+                },
+                {
+                    "name": "mute",
+                    "description": "Rendre muet un utilisateur",
+                    "usage": "/mute @utilisateur [durée] [raison]",
+                    "permissions": "MODERATE_MEMBERS"
+                },
+                {
+                    "name": "unmute",
+                    "description": "Retirer le mute d'un utilisateur",
+                    "usage": "/unmute @utilisateur",
+                    "permissions": "MODERATE_MEMBERS"
+                },
+                {
+                    "name": "purge",
+                    "description": "Supprimer un nombre spécifié de messages",
+                    "usage": "/purge nombre",
+                    "permissions": "MANAGE_MESSAGES"
+                },
+                {
+                    "name": "lockdown",
+                    "description": "Verrouiller un salon",
+                    "usage": "/lockdown [salon] [durée]",
+                    "permissions": "MANAGE_CHANNELS"
+                },
+                {
+                    "name": "raidmode",
+                    "description": "Activer/désactiver le mode raid",
+                    "usage": "/raidmode [on/off]",
+                    "permissions": "MANAGE_GUILD"
+                },
+                {
+                    "name": "slowmode",
+                    "description": "Définir le mode lent sur un salon",
+                    "usage": "/slowmode [durée]",
+                    "permissions": "MANAGE_CHANNELS"
+                }
+            ]
+        },
+        "warnings": {
+            "name": "Système d'avertissements",
+            "commands": [
+                {
+                    "name": "warn",
+                    "description": "Avertir un utilisateur",
+                    "usage": "/warn @utilisateur [raison]",
+                    "permissions": "MODERATE_MEMBERS"
+                },
+                {
+                    "name": "unwarn",
+                    "description": "Supprimer un avertissement",
+                    "usage": "/unwarn @utilisateur ID_avertissement",
+                    "permissions": "MODERATE_MEMBERS"
+                },
+                {
+                    "name": "warnings",
+                    "description": "Voir les avertissements d'un utilisateur",
+                    "usage": "/warnings [@utilisateur]",
+                    "permissions": "MODERATE_MEMBERS"
+                },
+                {
+                    "name": "warnrules",
+                    "description": "Afficher les règles d'avertissement",
+                    "usage": "/warnrules",
+                    "permissions": "MODERATE_MEMBERS"
+                },
+                {
+                    "name": "setwarnlevel",
+                    "description": "Définir les sanctions par niveau d'avertissement",
+                    "usage": "/setwarnlevel niveau sanction",
+                    "permissions": "ADMINISTRATOR"
+                }
+            ]
+        },
+        "xp_system": {
+            "name": "Système d'XP",
+            "commands": [
+                {
+                    "name": "level",
+                    "description": "Voir son niveau ou celui d'un autre utilisateur",
+                    "usage": "/level [@utilisateur]"
+                },
+                {
+                    "name": "leaderboard",
+                    "description": "Afficher le classement des niveaux",
+                    "usage": "/leaderboard"
+                },
+                {
+                    "name": "setxp",
+                    "description": "Définir l'XP d'un utilisateur",
+                    "usage": "/setxp @utilisateur montant",
+                    "permissions": "ADMINISTRATOR"
+                },
+                {
+                    "name": "resetxp",
+                    "description": "Réinitialiser l'XP d'un utilisateur",
+                    "usage": "/resetxp @utilisateur",
+                    "permissions": "ADMINISTRATOR"
+                },
+                {
+                    "name": "togglexp",
+                    "description": "Activer/désactiver le système d'XP",
+                    "usage": "/togglexp",
+                    "permissions": "ADMINISTRATOR"
+                }
+            ]
+        },
+        "roles": {
+            "name": "Gestion des rôles",
+            "commands": [
+                {
+                    "name": "addrole",
+                    "description": "Ajouter un rôle à un utilisateur",
+                    "usage": "/addrole @utilisateur @rôle",
+                    "permissions": "MANAGE_ROLES"
+                },
+                {
+                    "name": "removerole",
+                    "description": "Retirer un rôle d'un utilisateur",
+                    "usage": "/removerole @utilisateur @rôle",
+                    "permissions": "MANAGE_ROLES"
+                },
+                {
+                    "name": "createrole",
+                    "description": "Créer un nouveau rôle",
+                    "usage": "/createrole nom [couleur] [permissions]",
+                    "permissions": "MANAGE_ROLES"
+                },
+                {
+                    "name": "reactionrole",
+                    "description": "Créer un rôle par réaction",
+                    "usage": "/reactionrole message_id emoji @rôle",
+                    "permissions": "MANAGE_ROLES"
+                }
+            ]
+        },
+        "announcements": {
+            "name": "Annonces",
+            "commands": [
+                {
+                    "name": "announce",
+                    "description": "Envoyer une annonce",
+                    "usage": "/announce message [titre] [couleur] [@rôle]",
+                    "permissions": "MANAGE_MESSAGES"
+                }
+            ]
+        },
+        "youtube": {
+            "name": "Intégration YouTube",
+            "commands": [
+                {
+                    "name": "addyoutube",
+                    "description": "Ajouter une chaîne YouTube à suivre",
+                    "usage": "/addyoutube url [@rôle]",
+                    "permissions": "MANAGE_GUILD"
+                },
+                {
+                    "name": "removeyoutube",
+                    "description": "Retirer une chaîne YouTube",
+                    "usage": "/removeyoutube url",
+                    "permissions": "MANAGE_GUILD"
+                }
+            ]
+        },
+        "utility": {
+            "name": "Utilitaires",
+            "commands": [
+                {
+                    "name": "ping",
+                    "description": "Voir la latence du bot",
+                    "usage": "/ping"
+                },
+                {
+                    "name": "avatar",
+                    "description": "Afficher l'avatar d'un utilisateur",
+                    "usage": "/avatar [@utilisateur]"
+                },
+                {
+                    "name": "userinfo",
+                    "description": "Afficher les informations d'un utilisateur",
+                    "usage": "/userinfo [@utilisateur]"
+                },
+                {
+                    "name": "serverstats",
+                    "description": "Afficher les statistiques du serveur",
+                    "usage": "/serverstats"
+                },
+                {
+                    "name": "checkstatus",
+                    "description": "Vérifier l'état du bot",
+                    "usage": "/checkstatus",
+                    "permissions": "ADMINISTRATOR"
+                }
+            ]
+        },
+        "configuration": {
+            "name": "Configuration",
+            "commands": [
+                {
+                    "name": "config",
+                    "description": "Configurer les paramètres du serveur",
+                    "usage": "/config [sous-commandes]",
+                    "permissions": "ADMINISTRATOR"
+                },
+                {
+                    "name": "setlinks",
+                    "description": "Définir les liens utiles du serveur",
+                    "usage": "/setlinks nom url",
+                    "permissions": "ADMINISTRATOR"
+                },
+                {
+                    "name": "links",
+                    "description": "Afficher les liens utiles",
+                    "usage": "/links"
+                },
+                {
+                    "name": "customwelcomemessage",
+                    "description": "Personnaliser le message de bienvenue",
+                    "usage": "/customwelcomemessage message",
+                    "permissions": "ADMINISTRATOR"
+                }
+            ]
+        },
+        "fun": {
+            "name": "Divertissement",
+            "commands": [
+                {
+                    "name": "hug",
+                    "description": "Faire un câlin à un utilisateur",
+                    "usage": "/hug @utilisateur"
+                },
+                {
+                    "name": "luckywinner",
+                    "description": "Choisir un gagnant aléatoire",
+                    "usage": "/luckywinner [nombre]"
+                }
+            ]
+        }
+    },
+    "features": {
+        "auto_moderation": {
+            "name": "Auto-modération",
+            "description": "Système de modération automatique",
+            "commands": [
+                {
+                    "name": "automod",
+                    "description": "Configurer l'auto-modération",
+                    "usage": "/automod [options]",
+                    "permissions": "ADMINISTRATOR"
+                },
+                {
+                    "name": "automodwhitelist",
+                    "description": "Gérer la liste blanche de l'auto-modération",
+                    "usage": "/automodwhitelist [options]",
+                    "permissions": "ADMINISTRATOR"
+                }
+            ]
+        },
+        "birthday_system": {
+            "name": "Système d'anniversaire",
+            "description": "Gestion des anniversaires des membres",
+            "commands": [
+                {
+                    "name": "birthday",
+                    "description": "Voir les anniversaires",
+                    "usage": "/birthday"
+                },
+                {
+                    "name": "birthdayadd",
+                    "description": "Ajouter une date d'anniversaire",
+                    "usage": "/birthdayadd date"
+                }
+            ]
+        },
+        "xp_system": {
+            "name": "Système d'XP",
+            "description": "Système de progression par XP",
+            "features": [
+                "Gain d'XP automatique",
+                "Niveaux personnalisables",
+                "Récompenses par niveau",
+                "Classement des membres"
+            ]
+        },
+        "welcome_system": {
+            "name": "Système de bienvenue",
+            "description": "Gestion des nouveaux membres",
+            "features": [
+                "Message de bienvenue personnalisable",
+                "Attribution automatique de rôles",
+                "Vérification des comptes",
+                "Logs d'entrée"
+            ]
+        },
+        "logging_system": {
+            "name": "Système de logs",
+            "description": "Journalisation des actions",
+            "features": [
+                "Logs de modération",
+                "Logs de messages",
+                "Logs de membres",
+                "Logs de rôles"
+            ]
+        }
+    }
+} 

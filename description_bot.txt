@@ -1,0 +1,146 @@
+AURORA - BOT DISCORD MULTIFONCTION
+=================================
+
+Description générale :
+--------------------
+Aurora est un bot Discord polyvalent conçu pour gérer et améliorer l'expérience des serveurs Discord. Il offre un large éventail de fonctionnalités allant de la modération à l'engagement communautaire.
+
+FONCTIONNALITÉS PRINCIPALES :
+
+1. SYSTÈME DE MODÉRATION
+------------------------
+- Commandes de base :
+  * /ban : Bannir un utilisateur
+  * /unban : Débannir un utilisateur
+  * /kick : Expulser un utilisateur
+  * /mute : Rendre muet un utilisateur
+  * /unmute : Retirer le mute
+  * /purge : Supprimer des messages
+  * /lockdown : Verrouiller un salon
+  * /raidmode : Protection contre les raids
+  * /slowmode : Gestion du mode lent
+
+- Système d'avertissements :
+  * /warn : Avertir un utilisateur
+  * /unwarn : Supprimer un avertissement
+  * /warnings : Consulter les avertissements
+  * /warnrules : Voir les règles d'avertissement
+  * /setwarnlevel : Configurer les sanctions
+
+2. SYSTÈME D'XP ET NIVEAUX
+--------------------------
+- Fonctionnalités :
+  * Gain d'XP automatique
+  * Niveaux personnalisables
+  * Récompenses par niveau
+  * Classement des membres
+
+- Commandes :
+  * /level : Voir son niveau
+  * /leaderboard : Classement
+  * /setxp : Modifier l'XP
+  * /resetxp : Réinitialiser l'XP
+  * /togglexp : Activer/désactiver le système
+
+3. GESTION DES RÔLES
+--------------------
+- Commandes :
+  * /addrole : Ajouter un rôle
+  * /removerole : Retirer un rôle
+  * /createrole : Créer un nouveau rôle
+  * /reactionrole : Rôles par réaction
+
+4. SYSTÈME D'ANNONCES
+---------------------
+- Commandes :
+  * /announce : Envoyer une annonce
+  * Personnalisation du titre et de la couleur
+  * Mention de rôles optionnelle
+
+5. INTÉGRATION YOUTUBE
+---------------------
+- Fonctionnalités :
+  * Suivi automatique des chaînes
+  * Notifications de nouvelles vidéos
+  * Mentions de rôles personnalisables
+
+- Commandes :
+  * /addyoutube : Ajouter une chaîne
+  * /removeyoutube : Retirer une chaîne
+
+6. SYSTÈME DE BIENVENUE
+-----------------------
+- Fonctionnalités :
+  * Message de bienvenue personnalisable
+  * Attribution automatique de rôles
+  * Vérification des comptes
+  * Logs d'entrée
+
+7. SYSTÈME DE LOGS
+------------------
+- Types de logs :
+  * Modération
+  * Messages
+  * Membres
+  * Rôles
+
+8. AUTO-MODÉRATION
+------------------
+- Fonctionnalités :
+  * Filtrage automatique des messages
+  * Liste blanche configurable
+  * Protection contre le spam
+  * Filtrage des liens
+
+- Commandes :
+  * /automod : Configuration
+  * /automodwhitelist : Gestion des exceptions
+
+9. SYSTÈME D'ANNIVERSAIRE
+------------------------
+- Fonctionnalités :
+  * Suivi des anniversaires
+  * Notifications automatiques
+  * Affichage des anniversaires à venir
+
+- Commandes :
+  * /birthday : Voir les anniversaires
+  * /birthdayadd : Ajouter une date
+
+10. COMMANDES UTILITAIRES
+------------------------
+- Commandes :
+  * /ping : Vérifier la latence
+  * /avatar : Afficher l'avatar
+  * /userinfo : Informations utilisateur
+  * /serverstats : Statistiques du serveur
+  * /checkstatus : État du bot
+
+11. COMMANDES DE DIVERTISSEMENT
+-----------------------------
+- Commandes :
+  * /hug : Faire un câlin
+  * /luckywinner : Choisir un gagnant
+
+12. CONFIGURATION DU SERVEUR
+---------------------------
+- Commandes :
+  * /config : Paramètres généraux
+  * /setlinks : Liens utiles
+  * /links : Afficher les liens
+  * /customwelcomemessage : Message de bienvenue
+
+PERMISSIONS REQUISES :
+--------------------
+- Modération : BAN_MEMBERS, KICK_MEMBERS, MODERATE_MEMBERS
+- Gestion des rôles : MANAGE_ROLES
+- Gestion des messages : MANAGE_MESSAGES
+- Gestion des salons : MANAGE_CHANNELS
+- Configuration : ADMINISTRATOR, MANAGE_GUILD
+
+NOTES IMPORTANTES :
+------------------
+- Le bot nécessite les permissions appropriées pour fonctionner correctement
+- Certaines fonctionnalités peuvent être activées/désactivées par les administrateurs
+- Les configurations sont sauvegardées dans une base de données
+- Le bot utilise un système de logs complet pour le suivi des actions 

@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply antialiased scroll-smooth;
+  }
+  
+  body {
+    @apply bg-gradient-to-b from-aurora-start to-aurora-end text-secondary-100 min-h-screen;
+  }
+
+  ::selection {
+    @apply bg-aurora-accent/30 text-white;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-200 
+           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-aurora-start;
+  }
+  
+  .btn-primary {
+    @apply bg-aurora-accent text-white hover:bg-aurora-hover focus:ring-aurora-hover;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary-800 text-secondary-100 hover:bg-secondary-700 hover:text-white focus:ring-secondary-700;
+  }
+
+  .btn-outline {
+    @apply border-2 border-aurora-accent text-aurora-accent hover:bg-aurora-accent hover:text-white focus:ring-aurora-accent;
+  }
+  
+  .input {
+    @apply w-full px-4 py-2 rounded-lg bg-secondary-800/50 border border-secondary-700/50 text-white placeholder-secondary-400
+           focus:border-aurora-accent focus:ring-1 focus:ring-aurora-accent focus:outline-none
+           transition-colors duration-200;
+  }
+  
+  .card {
+    @apply bg-secondary-800/30 backdrop-blur-sm rounded-xl p-6 border border-secondary-700/50
+           hover:border-aurora-accent/50 transition-all duration-200
+           hover:shadow-lg hover:shadow-aurora-accent/10;
+  }
+
+  .nav-link {
+    @apply text-secondary-100 hover:text-white transition-colors duration-200
+           relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5
+           after:bg-aurora-accent after:scale-x-0 hover:after:scale-x-100
+           after:transition-transform after:duration-200;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-aurora-accent to-aurora-hover;
+  }
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-aurora-start;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-aurora-muted rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-aurora-accent;
+}
+
+/* Reset default styles */
+:root {
+  font-family: 'Montserrat', system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+/* Container styles */
+.container {
+  @apply w-full mx-auto px-4 ;
+}
+
+/* Section styles */
+section {
+  @apply w-full mx-auto;
+}
+
+/* Content wrapper */
+.content-wrapper {
+  @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
