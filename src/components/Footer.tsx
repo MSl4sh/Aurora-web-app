@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import auroraLogo from '/aurora-logo.png';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -19,7 +20,7 @@ const Footer = () => {
           >
             <div className="flex items-center space-x-4">
               <img
-                src="/aurora logo.png"
+                src={auroraLogo}
                 alt="Aurora Logo"
                 className="h-10 w-auto hover:scale-105 transition-transform duration-300"
               />

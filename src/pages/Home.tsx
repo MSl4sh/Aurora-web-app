@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import auroraLogo from '/aurora-logo.png';
 
 const Home = () => {
   const stats = [
@@ -87,11 +89,11 @@ const Home = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <motion.img
-              src="/aurora logo.png"
+              src={auroraLogo}
               alt="Aurora Logo"
               className="w-32 h-32 mx-auto mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5 }}
             />
             <motion.h1
@@ -132,9 +134,9 @@ const Home = () => {
                 </svg>
                 Inviter Aurora
               </a>
-              <a href="/documentation" className="btn btn-secondary">
+              <Link to="/documentation" className="btn btn-secondary">
                 Documentation
-              </a>
+              </Link>
             </motion.div>
           </div>
         </div>
