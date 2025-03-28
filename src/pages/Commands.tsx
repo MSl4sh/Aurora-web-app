@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import { Command, getAllCommands } from '../services/api';
 import documentation from '../documentation.json';
 
-interface Command {
+interface LocalCommand {
   name: string;
   description: string;
   usage: string;
@@ -14,31 +13,82 @@ interface Command {
 interface Category {
   id: string;
   name: string;
-  commands: Command[];
+  commands: LocalCommand[];
 }
 
-const Commands = () => {
+export default function Commands() {
+  const [commands, setCommands] = useState<Command[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  
-  const categories: Category[] = Object.entries(documentation.categories).map(([key, value]) => ({
-    id: key,
-    name: value.name,
-    commands: value.commands,
-  }));
+  const [selectedCategory, setSelectedCategory] = useState<Command['category'] | 'all'>('all');
+  const [usingFallback, setUsingFallback] = useState(false);
 
-  const filteredCommands = selectedCategory === 'all'
-    ? categories.flatMap(category => category.commands)
-    : categories.find(category => category.id === selectedCategory)?.commands || [];
+  const categories: { [key: string]: string } = {
+    all: 'Toutes les commandes',
+    moderation: 'Modération',
+    config: 'Configuration',
+    roles: 'Rôles',
+    tickets: 'Tickets',
+    youtube: 'YouTube',
+    xp: 'Système XP',
+    info: 'Information',
+    utils: 'Utilitaires'
+  };
 
-  const searchedCommands = filteredCommands.filter((command: Command) =>
-    command.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    command.description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  useEffect(() => {
+    const fetchCommands = async () => {
+      try {
+        const data = await getAllCommands();
+        setCommands(data);
+        setLoading(false);
+      } catch (err) {
+        // Conversion du format local vers le format API
+        const localCategories: Category[] = Object.entries(documentation.categories).map(([key, value]) => ({
+          id: key,
+          name: value.name,
+          commands: value.commands,
+        }));
+
+        const convertedCommands: Command[] = localCategories.flatMap((category, index) => 
+          category.commands.map((cmd, cmdIndex) => ({
+            id: index * 1000 + cmdIndex,
+            name: cmd.name,
+            category: category.id as Command['category'],
+            description: cmd.description,
+            usage_example: cmd.usage,
+            required_permissions: cmd.permissions || '',
+            parent_command: null,
+            base_usage: cmd.usage
+          }))
+        );
+
+        setCommands(convertedCommands);
+        setUsingFallback(true);
+        setLoading(false);
+      }
+    };
+
+    fetchCommands();
+  }, []);
+
+  const filteredCommands = commands
+    .filter(cmd => selectedCategory === 'all' || cmd.category === selectedCategory)
+    .filter(cmd =>
+      cmd.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      cmd.description.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-purple-500"></div>
+      </div>
+    );
+  }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-b from-secondary-900 via-aurora-start to-aurora-end">
-
+    <div className="flex flex-col min-h-screen">
       <main className="flex-1 pt-32 pb-16">
         <div className="container">
           <div className="max-w-5xl mx-auto">
@@ -53,6 +103,11 @@ const Commands = () => {
               <p className="text-xl text-secondary-100">
                 Découvrez toutes les commandes disponibles pour personnaliser votre expérience
               </p>
+              {usingFallback && (
+                <p className="text-sm text-yellow-400 mt-2">
+                  Mode hors-ligne : utilisation de la documentation locale
+                </p>
+              )}
             </motion.div>
 
             <motion.div
@@ -93,17 +148,20 @@ const Commands = () => {
                 >
                   Toutes
                 </button>
-                {categories.map((category) => (
-                  <button
-                    key={category.id}
-                    onClick={() => setSelectedCategory(category.id)}
-                    className={`btn ${
-                      selectedCategory === category.id ? 'btn-primary' : 'btn-secondary'
-                    }`}
-                  >
-                    {category.name}
-                  </button>
-                ))}
+                {Object.entries(categories).map(([key, label]) => {
+                  if (key === 'all') return null;
+                  return (
+                    <button
+                      key={key}
+                      onClick={() => setSelectedCategory(key as Command['category'])}
+                      className={`btn ${
+                        selectedCategory === key ? 'btn-primary' : 'btn-secondary'
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  );
+                })}
               </div>
             </motion.div>
 
@@ -113,9 +171,9 @@ const Commands = () => {
               transition={{ delay: 0.2 }}
               className="grid gap-4"
             >
-              {searchedCommands.map((command: Command, index: number) => (
+              {filteredCommands.map((command, index) => (
                 <motion.div
-                  key={command.name}
+                  key={command.id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * index }}
@@ -125,28 +183,35 @@ const Commands = () => {
                     <div className="flex-1">
                       <h3 className="text-xl font-semibold text-white mb-2 flex items-center gap-2">
                         <span className="text-aurora-hover">/</span>
-                        {command.name}
+                        {command.parent_command 
+                          ? `${command.parent_command} ${command.name}`
+                          : command.name
+                        }
                       </h3>
                       <p className="text-secondary-100 mb-3">
                         {command.description}
                       </p>
                       <div className="font-mono text-sm text-secondary-200 bg-secondary-800/50 p-3 rounded-lg border border-secondary-700/50">
-                        {command.usage}
+                        {command.usage_example}
                       </div>
                     </div>
-                    {command.permissions && (
-                      <div className="flex items-start">
-                        <span className="px-3 py-1 rounded-full text-xs font-medium bg-aurora-hover/20 text-aurora-hover border border-aurora-hover/20">
-                          {command.permissions}
-                        </span>
-                      </div>
-                    )}
+                    <div className="flex items-start">
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                        !command.required_permissions
+                          ? 'bg-green-500/20 text-green-400 border border-green-500/20'
+                          : 'bg-aurora-hover/20 text-aurora-hover border border-aurora-hover/20'
+                      }`}>
+                        {!command.required_permissions
+                          ? 'Accessible à tous'
+                          : command.required_permissions}
+                      </span>
+                    </div>
                   </div>
                 </motion.div>
               ))}
             </motion.div>
 
-            {searchedCommands.length === 0 && (
+            {filteredCommands.length === 0 && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -162,6 +227,4 @@ const Commands = () => {
       </main>
     </div>
   );
-};
-
-export default Commands; 
+} 

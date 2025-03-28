@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import auroraLogo from '/aurora-logo.png';
 
 const Home = () => {
   const stats = [
@@ -12,84 +11,79 @@ const Home = () => {
 
   const features = [
     {
-      title: 'Modération Avancée',
-      description: "Un système complet de modération pour maintenir votre serveur sécurisé.",
+      title: 'AutoMod',
+      description: "Système de modération automatique complet pour protéger votre serveur.",
       icon: '🛡️',
       details: [
-        'Commandes de modération essentielles (ban, kick, mute)',
-        "Système d'avertissements avec niveaux",
-        'Protection anti-raid et mode lent',
-        'Auto-modération configurable'
+        'Limites de messages, mentions et émojis',
+        'Protection contre le spam et les liens',
+        'Filtres de mots interdits personnalisables',
+        'Actions automatiques configurables'
       ],
       commands: [
-        '/ban',
-        '/kick',
-        '/mute',
-        '/warn',
-        '/raidmode'
+        '/config automod',
+        '/config anti-raid',
+        '/config tickets'
       ]
     },
     {
-      title: 'Système de Niveaux',
-      description: "Un système d'XP complet pour récompenser l'engagement de vos membres.",
+      title: 'Système de Tickets',
+      description: "Gestion intégrée des tickets de support pour votre communauté.",
+      icon: '🎫',
+      details: [
+        'Création de tickets personnalisés',
+        'Gestion des tickets par le support',
+        'Système de logs détaillé',
+        'Gestion des membres du ticket'
+      ],
+      commands: [
+        '/ticket create',
+        '/ticket close',
+        '/ticket add',
+        '/ticket remove'
+      ]
+    },
+    {
+      title: 'XP et Niveaux',
+      description: "Système d'XP complet pour récompenser l'engagement.",
       icon: '⭐',
       details: [
-        "Gain d'XP automatique personnalisable",
-        'Récompenses par niveau configurables',
+        'Gain d\'XP par message et vocal',
+        'Récompenses de niveau personnalisables',
         'Classement des membres actifs',
-        "Commandes de gestion d'XP"
+        'Configuration flexible des gains'
       ],
       commands: [
-        '/level',
-        '/leaderboard',
-        '/setup',
-        '/resetxp'
+        '/xp',
+        '/rewards',
+        '/config xp'
       ]
     },
     {
-      title: 'Gestion des Rôles',
-      description: "Gérez facilement les rôles et les permissions sur votre serveur.",
-      icon: '👑',
+      title: 'Anti-Raid',
+      description: "Protection avancée contre les raids et les comptes malveillants.",
+      icon: '🛡️',
       details: [
-        'Attribution automatique de rôles',
-        'Rôles par réaction',
-        'Création et gestion des rôles',
-        'Hiérarchie des permissions'
+        'Détection des raids automatique',
+        'Vérification de l\'âge des comptes',
+        'Actions automatiques configurables',
+        'Mode raid activable'
       ],
       commands: [
-        '/addrole',
-        '/removerole',
-        '/createrole',
-        '/reactionrole'
+        '/config anti-raid',
+        '/raidmode'
       ]
-    },
-    {
-      title: 'Logs et Surveillance',
-      description: "Gardez une trace de toutes les activités importantes.",
-      icon: '📝',
-      details: [
-        'Logs de modération',
-        'Suivi des messages',
-        'Logs des membres',
-        'Historique des rôles'
-      ],
-      commands: [
-        '/logs',
-        '/setlogs',
-        '/viewlogs',
-        '/history'
-      ]
-    },
+    }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-secondary-900 via-aurora-start to-aurora-end">
+    <div className="min-h-screen via-aurora-start to-aurora-end">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-24 bg-gradient-to-b from-secondary-900 mb-20">
+      <section className="relative pt-32   mb-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <motion.img
-              src={auroraLogo}
+              src="/Aurora-web-app/aurora-logo.png"
               alt="Aurora Logo"
               className="w-32 h-32 mx-auto mb-8"
               initial={{ scale: 0.5, opacity: 0 }}
@@ -120,7 +114,7 @@ const Home = () => {
               transition={{ duration: 0.5, delay: 0.4 }}
             >
               <a
-                href="https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&scope=bot"
+                href="https://discord.com/oauth2/authorize?client_id=1304850168981749780&permissions=8&scope=bot%20applications.commands"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-primary flex items-center gap-2"

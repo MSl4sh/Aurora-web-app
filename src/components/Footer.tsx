@@ -25,7 +25,7 @@ const Footer = () => {
                 className="h-10 w-auto hover:scale-105 transition-transform duration-300"
               />
               <h2 className="text-xl font-bold bg-gradient-to-r from-aurora-accent to-aurora-accent/70 bg-clip-text text-transparent">
-                Aurora Bot
+                Aurora
               </h2>
             </div>
             <p className="text-secondary-300 text-sm leading-relaxed max-w-md">

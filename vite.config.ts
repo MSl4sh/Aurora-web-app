@@ -5,7 +5,7 @@ import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/Aurora-web-app/',
+  base: '/Aurora-web-app',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
@@ -24,5 +24,8 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
       '@assets': path.resolve(__dirname, './public')
     }
+  },
+  server: {
+    port: 5173
   }
 })
